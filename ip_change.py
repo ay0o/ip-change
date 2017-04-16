@@ -1,9 +1,10 @@
 # -*- encoding: UTF-8 -*-
 
 import urllib2
+import pycurl
 import smtplib
 from email.mime.text import MIMEText
-from settings import SMTP_SERVER, SMTP_SERVER_PORT, SMTP_USER, SMTP_PASSWORD, FROM, TO, DOMAIN, IP
+from settings import *
 
 
 def send_email(ip):
@@ -25,10 +26,17 @@ def get_ip():
     return urllib2.urlopen(req).read()
 
 
+# def change_dns(ip):
+    # c = pycurl.Curl()
+    # c.setopt(pycurl.URL, "call_to_api_with_API_user_and_key")
+    # c.perform()
+
+
 def main():
     current_ip = get_ip()
     if current_ip != IP:
         send_email(current_ip)
+        # change_dns(current_ip)
 
 
 if __name__ == '__main__':

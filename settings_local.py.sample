@@ -11,4 +11,8 @@ SMTP_USER = "alice@gmail.com"
 SMTP_PASSWORD = "Bobismylove<3"
 FROM = "alice@gmail.com"
 TO = "bob@gmail.com"
+
+DOMAIN = "example.com"
 IP = "1.2.3.4"
+API_USER = ""
+API_KEY = ""
