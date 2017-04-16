@@ -1,0 +1,14 @@
+# Edit this file according to your needs and remove the .sample
+
+from settings import *
+
+
+SETTINGS_LOCAL = True
+
+SMTP_SERVER = "smtp.gmail.com"
+SMTP_SERVER_PORT = 587
+SMTP_USER = "alice@gmail.com"
+SMTP_PASSWORD = "Bobismylove<3"
+FROM = "alice@gmail.com"
+TO = "bob@gmail.com"
+IP = "1.2.3.4"
