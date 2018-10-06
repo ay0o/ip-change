@@ -1,0 +1,14 @@
+smtp:
+    server: 'SERVER'
+    port: PORT
+    user: 'alice@example.com'
+    password: 'qwerty'
+email:
+    from: 'alice@example.com'
+    to: 'bob@example.com'
+dns:
+  domain: 'example.com'
+  ip: '1.2.3.4'
+api:
+  user: ''
+  key: ''

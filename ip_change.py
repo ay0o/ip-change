@@ -1,43 +1,38 @@
-# -*- encoding: UTF-8 -*-
-
-import urllib2
-import pycurl
+import urllib.request
 import smtplib
 from email.mime.text import MIMEText
-from settings import *
+import yaml
 
 
-def send_email(ip):
-    text = "New IP: " + ip
+def parse_settings(settings_file='settings.yaml'):
+    with open(settings_file) as yaml_stream:
+        return yaml.load(stream=yaml_stream)
+
+
+def send_email(settings, ip):
+    text = "New IP: " + str(ip)
     msg = MIMEText(text, 'plain')
-    msg['Subject'] = DOMAIN + " ip changed!!"
-    msg['From'] = FROM
-    msg['To'] = TO
+    msg['Subject'] = settings['dns']['domain'] + " IP changed!!"
+    msg['From'] = settings['email']['from']
+    msg['To'] = settings['email']['to']
 
-    server = smtplib.SMTP(SMTP_SERVER, SMTP_SERVER_PORT)
+    server = smtplib.SMTP(settings['smtp']['server'], settings['smtp']['port'])
     server.starttls()
-    server.login(SMTP_USER, SMTP_PASSWORD)
-    server.sendmail(FROM, TO, msg.as_string())
+    server.login(settings['smtp']['user'], settings['smtp']['password'])
+    server.sendmail(settings['email']['from'], settings['email']['to'], msg.as_string())
     server.quit()
 
 
 def get_ip():
-    req = urllib2.Request(url="https://api.ipify.org")
-    return urllib2.urlopen(req).read()
+    return urllib.request.urlopen(url="https://api.ipify.org").read()
 
 
-# def change_dns(ip):
-    # c = pycurl.Curl()
-    # c.setopt(pycurl.URL, "call_to_api_with_API_user_and_key")
-    # c.perform()
+try:
+    settings = parse_settings()
+except FileNotFoundError as e:
+    print(e)
+    raise SystemExit(1)
 
-
-def main():
-    current_ip = get_ip()
-    if current_ip != IP:
-        send_email(current_ip)
-        # change_dns(current_ip)
-
-
-if __name__ == '__main__':
-    main()
+current_ip = get_ip()
+if current_ip != settings['dns']['ip']:
+    send_email(settings, current_ip)
