@@ -1,7 +1,7 @@
-import urllib.request
 import smtplib
 from email.mime.text import MIMEText
 import yaml
+import requests
 
 
 def parse_settings(settings_file='settings.yaml'):
@@ -24,7 +24,7 @@ def send_email(settings, ip):
 
 
 def get_ip():
-    return urllib.request.urlopen(url="https://api.ipify.org").read()
+    return requests.get("https://api.ipify.org").text
 
 
 try:

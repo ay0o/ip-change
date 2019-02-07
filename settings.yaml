@@ -9,6 +9,3 @@ email:
 dns:
   domain: 'example.com'
   ip: '1.2.3.4'
-api:
-  user: ''
-  key: ''
