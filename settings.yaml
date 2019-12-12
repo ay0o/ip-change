@@ -1,11 +1,11 @@
 smtp:
-    server: 'SERVER'
-    port: PORT
-    user: 'alice@example.com'
-    password: 'qwerty'
+    server: '<SMTP_SERVER>'
+    port: <SMTP_PORT>
+    user: '<EMAIL_FROM>'
+    password: '<EMAIL_PASS>'
 email:
-    from: 'alice@example.com'
-    to: 'bob@example.com'
+    from: '<EMAIL_FROM>'
+    to: '<EMAIL_TO>'
 dns:
-  domain: 'example.com'
-  ip: '1.2.3.4'
+  domain: '<DOMAIN>'
+  ip: '<IP>'

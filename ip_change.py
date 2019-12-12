@@ -6,7 +6,7 @@ import requests
 
 def parse_settings(settings_file='settings.yaml'):
     with open(settings_file) as yaml_stream:
-        return yaml.load(stream=yaml_stream)
+        return yaml.load(stream=yaml_stream, Loader=yaml.BaseLoader)
 
 
 def send_email(settings, ip):
