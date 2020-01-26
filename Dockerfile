@@ -23,8 +23,7 @@ ENV SMTP_SERVER="smtp.gmail.com"
 ENV SMTP_PORT="587"
 
 COPY --chown=launcher:launcher ip_change.py .
-COPY --chown=launcher:launcher settings.yaml .
-COPY --chown=launcher:launcher entrypoint.sh .
 
 USER launcher
-ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["python", "ip_change.py"]
+CMD ["-h"]
